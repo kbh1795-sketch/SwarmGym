@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SwarmGym Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="panel">
+        <header class="brand">
+          <div>
+            <h1>SwarmGym Studio</h1>
+            <p>Cooperative Search</p>
+          </div>
+          <span id="run-state">Ready</span>
+        </header>
+
+        <section>
+          <h2>World</h2>
+          <label>Grid size <input id="grid-size" type="number" min="5" max="40" value="14" /></label>
+          <label>Agents <input id="num-agents" type="number" min="1" max="12" value="4" /></label>
+          <label>Targets <input id="num-targets" type="number" min="0" max="40" value="8" /></label>
+          <label>Obstacles <input id="num-obstacles" type="number" min="0" max="300" value="22" /></label>
+          <label>Max steps <input id="max-steps" type="number" min="1" max="2000" value="250" /></label>
+        </section>
+
+        <section>
+          <h2>Experiment</h2>
+          <label>
+            Policy
+            <select id="policy">
+              <option value="random">Random</option>
+              <option value="greedy">Greedy nearest target</option>
+              <option value="frontier">Frontier coverage</option>
+            </select>
+          </label>
+          <label>Seed <input id="seed" type="number" value="42" /></label>
+          <label>Speed <input id="speed" type="range" min="1" max="30" value="10" /></label>
+        </section>
+      </aside>
+
+      <section class="simulator">
+        <div class="toolbar">
+          <button id="reset-btn">Reset</button>
+          <button id="step-btn">Step</button>
+          <button id="play-btn">Run</button>
+          <button id="episode-btn">Episode</button>
+          <button id="export-btn">Export CSV</button>
+        </div>
+        <canvas id="world-canvas" width="900" height="900"></canvas>
+        <div class="legend">
+          <span><i class="agent"></i>Agents</span>
+          <span><i class="target"></i>Targets</span>
+          <span><i class="obstacle"></i>Obstacles</span>
+          <span><i class="visited"></i>Visited</span>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <section class="metrics">
+          <article><span>Step</span><strong id="metric-step">0</strong></article>
+          <article><span>Total reward</span><strong id="metric-reward">0.0</strong></article>
+          <article><span>Targets found</span><strong id="metric-targets">0 / 0</strong></article>
+          <article><span>Collisions</span><strong id="metric-collisions">0</strong></article>
+          <article><span>Coverage</span><strong id="metric-coverage">0%</strong></article>
+          <article><span>Mean reward</span><strong id="metric-mean-reward">0.0</strong></article>
+        </section>
+        <section>
+          <h2>Agents</h2>
+          <table><thead><tr><th>ID</th><th>Row</th><th>Col</th><th>Reward</th></tr></thead><tbody id="agent-table"></tbody></table>
+        </section>
+        <section>
+          <h2>Event Log</h2>
+          <ol id="event-log"></ol>
+        </section>
+      </aside>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
