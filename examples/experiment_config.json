@@ -1,0 +1,14 @@
+{
+  "name": "cooperative_search_random_demo",
+  "policy": "random",
+  "episodes": 5,
+  "seed": 42,
+  "save_final_render": true,
+  "env": {
+    "grid_size": 10,
+    "num_agents": 3,
+    "num_targets": 5,
+    "num_obstacles": 10,
+    "max_steps": 100
+  }
+}
